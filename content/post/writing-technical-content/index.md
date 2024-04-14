@@ -1,390 +1,66 @@
 ---
-title: Writing technical content in Markdown
-date: 2019-07-12
+title: From Brainwave to Machine Learning Grave💀 - Challenges Faced by ML (Machine Learning) Models from Idea to Production. (Deployment Phase)
+summary: According to VentureBeat, 87% of data science projects never reach production. In this article, I explore the difficulties of transitioning a machine learning idea into a production environment and the common obstacles encountered along the way. I will also discuss potential solutions to these challenges. This article is based on my experience working in ML operations for digital agriculture solutions at Syngenta.
+
+date: 2023-07-27
+custom_reading_time: 4
 math: true
 image:
   placement: 2
-  caption: 'Image credit: [**John Moeses Bauan**](https://unsplash.com/photos/OGZtQF8iC0g)'
+  caption: 'Image credit: Syngenta Medium Blog)'
+external_link: https://medium.com/syngenta-digitalblog/from-brainwave-to-machine-learning-grave-challenges-faced-by-ml-machine-learning-models-from-dff73d8234f3
 ---
 
-Hugo Blox Builder is designed to give technical content creators a seamless experience. You can focus on the content and Wowchemy handles the rest.
-
-**Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.**
-
-On this page, you'll find some examples of the types of technical content that can be rendered with Wowchemy.
-
-## Examples
-
-### Code
-
-Wowchemy supports a Markdown extension for highlighting code syntax. You can customize the styles under the `syntax_highlighter` option in your `config/_default/params.yaml` file.
-
-    ```python
-    import pandas as pd
-    data = pd.read_csv("data.csv")
-    data.head()
-    ```
-
-renders as
-
-```python
-import pandas as pd
-data = pd.read_csv("data.csv")
-data.head()
-```
-
-### Mindmaps
-
-Wowchemy supports a Markdown extension for mindmaps.
-
-Simply insert a Markdown `markmap` code block and optionally set the height of the mindmap as shown in the example below.
-
-A simple mindmap defined as a Markdown list:
-
-<div class="highlight">
-<pre class="chroma">
-<code>
-```markmap {height="200px"}
-- Hugo Modules
-  - wowchemy
-  - blox-plugins-netlify
-  - blox-plugins-netlify-cms
-  - blox-plugins-reveal
-```
-</code>
-</pre>
-</div>
-
-renders as
-
-```markmap {height="200px"}
-- Hugo Modules
-  - wowchemy
-  - blox-plugins-netlify
-  - blox-plugins-netlify-cms
-  - blox-plugins-reveal
-```
-
-A more advanced mindmap with formatting, code blocks, and math:
-
-<div class="highlight">
-<pre class="chroma">
-<code>
-```markmap
-- Mindmaps
-  - Links
-    - [Wowchemy Docs](https://docs.hugoblox.com/)
-    - [Discord Community](https://discord.gg/z8wNYzb)
-    - [GitHub](https://github.com/HugoBlox/hugo-blox-builder)
-  - Features
-    - Markdown formatting
-    - **inline** ~~text~~ *styles*
-    - multiline
-      text
-    - `inline code`
-    -
-      ```js
-      console.log('hello');
-      console.log('code block');
-      ```
-    - Math: $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
-```
-</code>
-</pre>
-</div>
-
-renders as
-
-```markmap
-- Mindmaps
-  - Links
-    - [Wowchemy Docs](https://docs.hugoblox.com/)
-    - [Discord Community](https://discord.gg/z8wNYzb)
-    - [GitHub](https://github.com/HugoBlox/hugo-blox-builder)
-  - Features
-    - Markdown formatting
-    - **inline** ~~text~~ *styles*
-    - multiline
-      text
-    - `inline code`
-    -
-      ```js
-      console.log('hello');
-      console.log('code block');
-      ```
-    - Math: $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
-```
+From Brainwave to Machine Learning Grave💀: Challenges Faced by ML (Machine Learning) Models from Idea to Production. (Deployment Phase)
 
-### Charts
 
-Wowchemy supports the popular [Plotly](https://plot.ly/) format for interactive charts.
+In the decade of ChatGPT (🤫: who generated the title), we still imagine a world where all ML ideas convert into reality. Building an ML model that solves a real-world problem is enticing. In a parallel universe, you create a model, train it on a massive dataset, and validate it with remarkable accuracy; boom, you have a system that solves the intended problem. But the reality is far from this dream. According to VentureBeat, 87% of data science projects never make it into production. According to Algorithmia, 64% of organizations spend a month or longer to deploy a model.
 
-Save your Plotly JSON in your page folder, for example `line-chart.json`, and then add the `{{</* chart data="line-chart" */>}}` shortcode where you would like the chart to appear.
+In this article, we will explore the challenges faced while converting an ML idea to production and the pain points of the journey. A more comprehensive list is presented in the following studies “Challenges in Deploying Machine Learning: A Survey of Case Studies, Paleyes et al., Jan 2021” and “Hidden Technical Debt In Machine Learning Systems, Sculley et al., Dec 2015.”
 
-Demo:
 
-{{< chart data="line-chart" >}}
+ML model deployment:
 
-You might also find the [Plotly JSON Editor](http://plotly-json-editor.getforge.io/) useful.
+After we have built a good-performing ML model (sleepless nights 💤), the next step is to deploy the ML model for consumption. ML engineering and DevOps play an essential role in the success of an ML model and the deployment phase. This step is challenging, and below are the most common problems faced.
 
-### Math
+Model integration
 
-Wowchemy supports a Markdown extension for $\LaTeX$ math. You can enable this feature by toggling the `math` option in your `config/_default/params.yaml` file.
+Deciding how to integrate the model to fit into the existing system and be consumed quickly is essential. Multiple options of using FastAPI or using serving tools like Seldon, Kserve, TFServing, etc., is a daunting decision. The key factors are the system’s reusability and how easy it is to onboard new models and alter existing ones.
 
-To render _inline_ or _block_ math, wrap your LaTeX math with `{{</* math */>}}$...${{</* /math */>}}` or `{{</* math */>}}$$...$${{</* /math */>}}`, respectively. (We wrap the LaTeX math in the Wowchemy _math_ shortcode to prevent Hugo rendering our math as Markdown. The _math_ shortcode is new in v5.5-dev.)
+Sometimes running after technologies over solutions can bring unnecessary problems. While working on integrating and deploying models at Syngenta the team tried to implement Seldon for creating a service on the fly instead of FastAPI. Though there are numerous benefits of Seldon we found that this was not a good fit where we had pure mathematical models, models concerning different pre- and post-processing, and thus working with Seldon became cumbersome to the point that we moved back to FastAPI.
 
-Example **math block**:
+Deployment infrastructure and scalability
 
-```latex
-{{</* math */>}}
-$$
-\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}
-$$
-{{</* /math */>}}
-```
+As simple as it might sound, a vague understanding of the infrastructure and scalability can impact user trust, model availability, and model reliability. A model may need a specific type of resource for computation, and it is crucial that the underlying infrastructure aids in fulfilling the business requirements. One another factor that affects the scalability of deployment is the model size and performance. Sometimes model packages may be a complete black box, and a lot of glue code gets generated to manage discrete packages and processing. Glue code often reduces the performance of the deployed API (Application Programming Interface). A nasty ML code can decrease agility over time and lead to redoing the entire architecture.
 
-renders as
-
-{{< math >}}
-$$\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-{{< /math >}}
-
-Example **inline math** `{{</* math */>}}$\nabla F(\mathbf{x}_{n})${{</* /math */>}}` renders as {{< math >}}$\nabla F(\mathbf{x}_{n})${{< /math >}}.
-
-Example **multi-line math** using the math linebreak (`\\`):
-
-```latex
-{{</* math */>}}
-$$f(k;p_{0}^{*}) = \begin{cases}p_{0}^{*} & \text{if }k=1, \\
-1-p_{0}^{*} & \text{if }k=0.\end{cases}$$
-{{</* /math */>}}
-```
-
-renders as
-
-{{< math >}}
-
-$$
-f(k;p_{0}^{*}) = \begin{cases}p_{0}^{*} & \text{if }k=1, \\
-1-p_{0}^{*} & \text{if }k=0.\end{cases}
-$$
-
-{{< /math >}}
-
-### Diagrams
-
-Wowchemy supports a Markdown extension for diagrams. You can enable this feature by toggling the `diagram` option in your `config/_default/params.toml` file or by adding `diagram: true` to your page front matter.
-
-An example **flowchart**:
-
-    ```mermaid
-    graph TD
-    A[Hard] -->|Text| B(Round)
-    B --> C{Decision}
-    C -->|One| D[Result 1]
-    C -->|Two| E[Result 2]
-    ```
-
-renders as
-
-```mermaid
-graph TD
-A[Hard] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-An example **sequence diagram**:
-
-    ```mermaid
-    sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
-    ```
-
-renders as
-
-```mermaid
-sequenceDiagram
-Alice->>John: Hello John, how are you?
-loop Healthcheck
-    John->>John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John-->>Alice: Great!
-John->>Bob: How about you?
-Bob-->>John: Jolly good!
-```
-
-An example **Gantt diagram**:
-
-    ```mermaid
-    gantt
-    section Section
-    Completed :done,    des1, 2014-01-06,2014-01-08
-    Active        :active,  des2, 2014-01-07, 3d
-    Parallel 1   :         des3, after des1, 1d
-    Parallel 2   :         des4, after des1, 1d
-    Parallel 3   :         des5, after des3, 1d
-    Parallel 4   :         des6, after des4, 1d
-    ```
-
-renders as
-
-```mermaid
-gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-```
-
-An example **class diagram**:
-
-    ```mermaid
-    classDiagram
-    Class01 <|-- AveryLongClass : Cool
-    Class03 *-- Class04
-    Class05 o-- Class06
-    Class07 .. Class08
-    Class09 --> C2 : Where am i?
-    Class09 --* C3
-    Class09 --|> Class07
-    Class07 : equals()
-    Class07 : Object[] elementData
-    Class01 : size()
-    Class01 : int chimp
-    Class01 : int gorilla
-    Class08 <--> C2: Cool label
-    ```
-
-renders as
-
-```mermaid
-classDiagram
-Class01 <|-- AveryLongClass : Cool
-Class03 *-- Class04
-Class05 o-- Class06
-Class07 .. Class08
-Class09 --> C2 : Where am i?
-Class09 --* C3
-Class09 --|> Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-Class08 <--> C2: Cool label
-```
-
-An example **state diagram**:
-
-    ```mermaid
-    stateDiagram
-    [*] --> Still
-    Still --> [*]
-    Still --> Moving
-    Moving --> Still
-    Moving --> Crash
-    Crash --> [*]
-    ```
-
-renders as
-
-```mermaid
-stateDiagram
-[*] --> Still
-Still --> [*]
-Still --> Moving
-Moving --> Still
-Moving --> Crash
-Crash --> [*]
-```
-
-### Todo lists
-
-You can even write your todo lists in Markdown too:
-
-```markdown
-- [x] Write math example
-  - [x] Write diagram example
-- [ ] Do something else
-```
-
-renders as
-
-- [x] Write math example
-  - [x] Write diagram example
-- [ ] Do something else
-
-### Tables
-
-Save your spreadsheet as a CSV file in your page's folder and then render it by adding the _Table_ shortcode to your page:
-
-```go
-{{</* table path="results.csv" header="true" caption="Table 1: My results" */>}}
-```
-
-renders as
-
-{{< table path="results.csv" header="true" caption="Table 1: My results" >}}
-
-### Callouts
-
-Academic supports a [shortcode for callouts](https://docs.hugoblox.com/content/writing-markdown-latex/#callouts), also referred to as _asides_, _hints_, or _alerts_. By wrapping a paragraph in `{{%/* callout note */%}} ... {{%/* /callout */%}}`, it will render as an aside.
-
-```markdown
-{{%/* callout note */%}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{%/* /callout */%}}
-```
-
-renders as
-
-{{% callout note %}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{% /callout %}}
-
-### Spoilers
-
-Add a spoiler to a page to reveal text, such as an answer to a question, after a button is clicked.
-
-```markdown
-{{</* spoiler text="Click to view the spoiler" */>}}
-You found me!
-{{</* /spoiler */>}}
-```
-
-renders as
-
-{{< spoiler text="Click to view the spoiler" >}} You found me! {{< /spoiler >}}
-
-### Icons
-
-Academic enables you to use a wide range of [icons from _Font Awesome_ and _Academicons_](https://docs.hugoblox.com/getting-started/page-builder/#icons) in addition to [emojis](https://docs.hugoblox.com/content/writing-markdown-latex/#emojis).
-
-Here are some examples using the `icon` shortcode to render icons:
-
-```markdown
-{{</* icon name="terminal" pack="fas" */>}} Terminal  
-{{</* icon name="python" pack="fab" */>}} Python  
-{{</* icon name="r-project" pack="fab" */>}} R
-```
-
-renders as
-
-{{< icon name="terminal" pack="fas" >}} Terminal  
-{{< icon name="python" pack="fab" >}} Python  
-{{< icon name="r-project" pack="fab" >}} R
-
-### Did you find this page helpful? Consider sharing it 🙌
+Full-fledged technologies like Kubeflow and AWS (Amazon Web Services) SageMaker present a collection of tools to help the lifecycle of ML models from development to production-grade deployment. Such tools and platforms can also help data scientists to deploy ML models to production with straightforward steps, even without extensive knowledge of technologies like Kubernetes. The mentioned technologies manage the infrastructure, and you only need to worry about the code.
+
+While deploying an ML model concerning imagery, my team at Syngenta encountered a problem concerning model performance. The guidelines for scalability were not clear. The team worked on deploying the model and later found that the expectation for the number of requests per second was more than predicted. Even though autoscaling is a thing, the model depends on numerous factors and database connections and queuing mechanisms. We need to look out for such things in the preliminary stages to avoid unnecessary re-work. Such problems can be dealt with simply by increasing the number of maxPods in your deployment, but sometimes it causes a lot of fire on the slack/teams channels🔥🚒🧯
+
+Model monitoring and updates
+
+Once the model gets deployed for consumption, monitoring for performance, health, and accuracy is important. With time the models may degrade with new data coming into the system. Such degradation in performance calls for retraining the models. One must have proper monitoring, health checks, notifications, and alerts for the deployment.
+
+We often think the first model we deploy is the only one we will deploy. At Syngenta, we prioritize incremental changes in models over including everything at once. This makes sure we do not have breaking changes and helps us to check the impact of changes made.
+
+Configuring CICD for testing, validating, and deploying new models can aid in faster time to production. A properly configured CICD will also reduce the chance of piling unreleased changes. In some cases, a subsequent release often refers to a breaking change that alters the entire system. The previous work is a waste in such cases. A feedback loop is essential for updating the model and tuning the parameters. Implementing a feedback loop correctly to ensure the user does not report erroneous data is also challenging.
+
+Many tools are present out there to get logs, traces, and alerts for your deployed services. Often choosing the right tool can be a lot of PoC (proof of concept) work, but it is worth the investment. At Syngenta, we used a tool to get traces for our services, but the tool was not working well enough for detecting logs and correlating them to respective traces. It caused a lot of inconvenience to get insights about the deployed services. We use Datadog for Application Performance Monitoring; it is easier to configure and provides great visibility. Choosing the right tool that fits your infrastructure and needs is crucial and will help eventually. Proper monitoring and alerts also help with the visibility of your service health.
+
+Differences in training and serving pipelines
+
+One of the classic problems is the difference in the training and serving pipeline. You may get the desired metrics while training the model, but the difference in data, implementation, versioning, and dependencies in the serving phase can produce the wrong output. In agriculture, most models will depend on the weather, and the unpredictability of data affects the model performance.
+
+When you design a model specifically for batch processing and suddenly want it to handle real-time online requests, it may be a huge challenge to feed data to the model and do the correct preprocessing.
+
+The addition of synthetic data and data for predictable scenarios that may occur and are not present currently are ways to make your model handle a wide range of requests accurately. Implementing feature stores, versioning tools, and A/B testing can help reduce the gap and ensure a peaceful Friday night after the production release.
+
+Poor connection between the research and deployment team
+
+For example, Alex from the ML engineering team assumed that the predicted crop yield by the yield prediction model is in kg/ha, but it is bushels/acre. Though this might be a quick fix, some problems cause delays in deployment, unsatisfied business requirements, friction between teams, and even rewriting a piece of logic that packaged model already handles. It is a common suggestion that engineering and research teams work together rather than in isolated environments and often can be the same team with two roles.
+
+It is also essential to confirm the effects of wrong predictions, false negatives, and false positives with the stakeholders. A false negative can be worse than a false positive. E.g., sometimes the model may be working on a critical aspect such as breast cancer detection, and a false negative can be a disastrous situation.
+
+Long story short:
+
+These are some general problems faced by most of the teams which may sound very trivial but will cause a lot of technical debt. Make sure you keep an eye on these crucial points and tackle them at an early stage. There might be many such problems organizations and individuals face on a day-to-day basis while deploying ML models. If you are facing a unique issue, please feel free to comment; if you have already tackled it, please mention it in the comments section. Cheers!! 🥂
