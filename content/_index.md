@@ -62,33 +62,86 @@ sections:
       #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
-        - title: CEO
-          company: GenCoin
+        - title: Graduate Teaching Assistant
+          company: University of California Los Angeles
           company_url: ''
-          company_logo: org-gc
+          company_logo: ucla
           location: California
-          date_start: '2021-01-01'
-          date_end: ''
+          date_start: '2024-01-28'
+          date_end: '2024-06-14'
           description: |2-
-              Responsibilities include:
+              During my tenure as a Teaching Assistant, I facilitated learning in two advanced mathematics courses:
+              * MATH 31B - Integration and Infinite Series, Winter 2024
+              * MATH 32B - Calculus of Several Variables, Spring 2024
+              
+              Skills and Competencies Developed: Analytical Thinking, Technical Communication, Problem Solving, Mentorship and Leadership
 
-              * Analysing
-              * Modelling
-              * Deploying
-        - title: Professor of Semiconductor Physics
-          company: University X
+        - title: Junior Developer ML Operations
+          company: Syngenta
+          company_url: 'https://www.syngenta.com/en'
+          company_logo: syngenta
+          location: Pune India
+          date_start: '2022-08-01'
+          date_end: '2023-08-25'
+          description: |2-
+              As a Junior Developer in ML Operations at Syngenta, I was instrumental in advancing the deployment and scalability of machine learning models to meet the demands of high-volume real-time data processing
+
+              * ML Model Deployment: Engineered and deployed robust ML models into production environments. Developed and maintained APIs to facilitate real-time model predictions, optimizing processes to ensure rapid response times. Conducted extensive research to scale deployments effectively, handling thousands of concurrent requests.
+              * Pipeline Optimization: Evaluated and implemented MLOps tools, adopting Kubeflow for creating reusable ML pipelines and KServe for efficient model serving. This strategic implementation halved the deployment time for ML models, significantly enhancing operational efficiency.
+              * Cross-Functional Leadership: Spearheaded the communications squad, addressing and resolving key project blockers. Enhanced team collaboration and solution development across departments. Proficiently used Docker and Kubernetes to deploy FastAPIs and integrated Datadog for comprehensive logging of deployed APIs.
+              * Project Coordination and Data Integration: Led a critical initiative to streamline data integration for ML model inputs. After identifying gaps in data availability that threatened to delay project timelines, I proactively coordinated with global teams. My efforts culminated in a strategic roadmap that not only clarified data sourcing but also expedited the project delivery by one week, avoiding potential setbacks from previously unclear requirements.
+
+              * Technologies: FastAPI, Docker, Kubernetes, AWS, DynamoDB, AWS SageMaker, Kubeflow, KServe, Python, Datadog
+              * Skills: API Development, Data Pipeline Construction, Continuous Integration and Deployment (CI/CD), Database Optimization, Project Management, Strategic Problem Solving, Technical Communication
+
+          
+        - title: Associate Software Developer Intern
+          company: IDeaS - a SAS Company
           company_url: ''
-          company_logo: org-x
+          company_logo: ideas
           location: California
-          date_start: '2016-01-01'
-          date_end: '2020-12-31'
-          description: Taught electronic engineering and researched semiconductor physics.
+          date_start: '2022-01-10'
+          date_end: '2022-08-01'
+          description: |2-
+              During my internship, I contributed significantly to the enhancement of the IDeaS Revenue Management System (RMS):
+              * System Performance Optimization: Designed and implemented a proof of concept using Redis for system caching, boosting the RMS product performance by 40%.
+              * Feature Development: Programmed new application pages using Java and Angular, enhancing stakeholder access to data and integrating essential features into the RMS.
+              * Functional Improvements: Developed and integrated optimized log search and Excel export capabilities for system logs, significantly aiding internal teams in functional testing and debugging, which improved developer efficiency by 15%.
+              * Technology Stack Proficiency: Gained hands-on experience with Java, Angular, Vaadin, SQL, and EJB. Focused on advancing the RMS through comprehensive software testing and quality assurance.
+              * Technologies Used: Java, Angular, Vaadin, SQL, EJB
+
+          
+        - title: Research Collaborator
+          company: Vishwakarma Institute of Information Technology
+          company_url: ''
+          company_logo: viit
+          location: Pune, India
+          date_start: '2021-08-01'
+          date_end: '2021-12-31'
+          description: |2-
+              Contributed to a research project entitled "Analysis and Prediction of Soil Nutrients for Crop Using Machine Learning Classifier". This initiative aimed to leverage machine learning techniques to predict soil nutrient levels, enhancing agricultural decision-making and crop yield optimization.
+              
+              Successfully filed an Australian innovation patent related to the methodologies developed during the research project, focusing on the application of machine learning in agricultural analysis to predict soil nutrient content effectively.
+        - title: Software Development Intern
+          
+          company: Syngenta
+          company_url: 'https://www.syngenta.com/en'
+          company_logo: syngenta
+          location: Pune India
+          date_start: '2021-08-01'
+          date_end: '2021-12-31'
+          description: |2-
+              During my internship in the Digital Product Engineering (DPE) team, I led significant projects and enhanced critical systems:
+
+              * Spearheaded the adoption of Feast, an open-source feature store, to manage feature data for machine learning models, reducing redundancy and improving efficiency in data handling.
+              * Remodeled the system for microservice coordination by integrating Cadence, an open-source orchestrator. Implemented parallel processing techniques, reducing application response times by 75%.
+              * Delivered a global presentation on my work to colleagues and interns worldwide, significantly enhancing my communication and presentation skills.
     design:
       columns: '2'
   - block: accomplishments
     content:
       # Note: `&shy;` is used to add a 'soft' hyphen in a long heading.
-      title: 'Accomplish&shy;ments'
+      title: 'Accomplishments'
       subtitle:
       # Date format: https://docs.hugoblox.com/customization/#date-format
       date_format: Jan 2006
@@ -107,13 +160,13 @@ sections:
           organization_url: https://www.coursera.org
           title: Neural Networks and Deep Learning
           url: ''
-        - certificate_url: https://www.edx.org
+        - certificate_url: https://www.aws.training/Certification
           date_end: ''
           date_start: '2021-01-01'
           description: Formulated informed blockchain models, hypotheses, and use cases.
           icon: edx
-          organization: edX
-          organization_url: https://www.edx.org
+          organization: aws
+          organization_url: https://www.aws.training/Certification
           title: Blockchain Fundamentals
           url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
         - certificate_url: https://www.datacamp.com
@@ -189,17 +242,17 @@ sections:
         {{< gallery album="demo" >}}
     design:
       columns: '1'
-  - block: collection
-    id: featured
-    content:
-      title: Featured Publications
-      filters:
-        folders:
-          - publication
-        featured_only: true
-    design:
-      columns: '2'
-      view: card
+  # - block: collection
+  #   id: featured
+  #   content:
+  #     title: Featured Publications
+  #     filters:
+  #       folders:
+  #         - publication
+  #       featured_only: true
+  #   design:
+  #     columns: '2'
+  #     view: card
   - block: collection
     content:
       title: Recent Publications

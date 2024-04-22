@@ -60,7 +60,7 @@ skills:
         percent: 100
         icon: chart-line
         icon_pack: fas
-      - name: SQL
+      - name: Databases and Distibuted Systems
         description: ''
         percent: 40
         icon: database
